@@ -31,7 +31,7 @@ public class WaitingTest {
         categoriesItem.click();
         categoryItem.click();
 
-        // load the page and then retireve the list of products
+        // load the page and then retrieve the list of products
         page.waitForSelector(".card",
                 new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         var filteredProducts = page.getByTestId("product-name").allInnerTexts();
