@@ -1,17 +1,20 @@
 package com.mvrz.practice.toolshop.catalog;
 
+import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Tracing;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
 import com.mvrz.practice.toolshop.catalog.pageobjects.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import java.nio.file.Paths;
+import java.util.Locale;
 
 @UsePlaywright(HeadlessChromeOptions.class)
 public class AddToCartPlayTest {
+
     SearchComponent searchComponent;
     ProductList productList;
     ProductDetails productDetails;
@@ -20,6 +23,8 @@ public class AddToCartPlayTest {
 
     @BeforeEach
     void openToolShopPage(Page page) {
+
+        setupTrace(page.context());
         searchComponent = new SearchComponent(page);
         productList = new ProductList(page);
         productDetails = new ProductDetails(page);
@@ -28,6 +33,26 @@ public class AddToCartPlayTest {
 
         page.navigate("https://practicesoftwaretesting.com");
     }
+
+
+    void setupTrace(BrowserContext context) {
+        context.tracing().start(
+                new Tracing.StartOptions()
+                        .setScreenshots(true)
+                        .setSnapshots(true)
+                        .setSources(true)
+        );
+    }
+
+    @AfterEach
+    void recordTrace(TestInfo testInfo, BrowserContext context) {
+        String traceName = testInfo.getDisplayName().replace(" ", "-").toLowerCase();
+        context.tracing().stop(
+                new Tracing.StopOptions()
+                        .setPath(Paths.get("target/traces/trace-" + traceName + ".zip"))
+        );
+    }
+
 
     @DisplayName("when checking out an item in the cart")
     @Test()
