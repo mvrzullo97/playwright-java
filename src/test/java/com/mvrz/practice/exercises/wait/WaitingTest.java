@@ -1,10 +1,10 @@
-package com.mvrz.practice.wait;
+package com.mvrz.practice.exercises.wait;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
-import com.mvrz.practice.utils.HeadlessChromeOptions;
+import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

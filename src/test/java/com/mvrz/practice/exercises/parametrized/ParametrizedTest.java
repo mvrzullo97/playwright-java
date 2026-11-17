@@ -1,10 +1,10 @@
-package com.mvrz.practice.parametrized;
+package com.mvrz.practice.exercises.parametrized;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
-import com.mvrz.practice.utils.HeadlessChromeOptions;
+import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

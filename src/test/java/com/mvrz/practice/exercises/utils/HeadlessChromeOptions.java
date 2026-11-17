@@ -1,4 +1,4 @@
-package com.mvrz.practice.utils;
+package com.mvrz.practice.exercises.utils;
 
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.junit.Options;

@@ -1,4 +1,4 @@
-package com.mvrz.practice.simple;
+package com.mvrz.practice.exercises.simple;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;

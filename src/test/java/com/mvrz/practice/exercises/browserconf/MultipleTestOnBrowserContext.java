@@ -1,4 +1,4 @@
-package com.mvrz.practice.browserconf;
+package com.mvrz.practice.exercises.browserconf;
 
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
