@@ -54,9 +54,11 @@ public class SearchForProductsPlayTest {
         Assertions.assertThat(matchingResults).hasSize(9);
     }
 
+    @DisplayName("dumb test to verify some stuffs")
     @Test
     public void openTheHomePage() {
         navBar.openHomePage();
+        searchComponent.filterBy("Hand Saw");
     }
 
 }
