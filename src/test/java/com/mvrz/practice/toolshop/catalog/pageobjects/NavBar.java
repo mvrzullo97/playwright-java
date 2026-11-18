@@ -20,6 +20,10 @@ public class NavBar {
     public void openContactPage() {
         page.getByTestId("nav-contact").click();
     }
+
+    public void openHomePage() {
+        page.navigate("https://practicesoftwaretesting.com");
+    }
 }
 
 

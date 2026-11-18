@@ -3,6 +3,7 @@ package com.mvrz.practice.toolshop.catalog;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
+import com.mvrz.practice.toolshop.catalog.pageobjects.NavBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
 import org.assertj.core.api.Assertions;
@@ -17,11 +18,13 @@ public class SearchForProductsPlayTest {
 
     SearchComponent searchComponent;
     ProductList productList;
+    NavBar navBar;
 
     @BeforeEach
     void openToolShopPage(Page page) {
         searchComponent = new SearchComponent(page);
         productList = new ProductList(page);
+        navBar = new NavBar(page);
         page.navigate("https://practicesoftwaretesting.com");
     }
 
@@ -49,6 +52,11 @@ public class SearchForProductsPlayTest {
         searchComponent.clearSearch();
         List<String> matchingResults = productList.getProductNames();
         Assertions.assertThat(matchingResults).hasSize(9);
+    }
+
+    @Test
+    public void openTheHomePage() {
+        navBar.openHomePage();
     }
 
 }
