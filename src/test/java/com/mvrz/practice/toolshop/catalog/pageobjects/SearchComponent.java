@@ -1,9 +1,6 @@
 package com.mvrz.practice.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Request;
-import com.microsoft.playwright.Response;
-import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
 
 import java.util.Objects;
@@ -13,6 +10,12 @@ public class SearchComponent {
 
     public SearchComponent(Page page) {
         this.page = page;
+    }
+
+    public void switchPageOfCatalog(String pageNumber) {
+        page.locator(".page-item")
+                .getByText(pageNumber)
+                .click();
     }
 
     public void searchBy(String keyword) {
@@ -33,8 +36,8 @@ public class SearchComponent {
     public void clearSearch() {
         page.waitForResponse(
                 response -> response.url().endsWith("/products")
-                        && response.request().postData() != null
-                        && Objects.requireNonNull(response.request().postData()).contains("is_rental"),
+                        && response.request().postData() != null,
+                        //&& Objects.requireNonNull(response.request().postData()).contains("is_rental"),
                 () -> {
                     page.getByTestId("search-reset").click();
                 });

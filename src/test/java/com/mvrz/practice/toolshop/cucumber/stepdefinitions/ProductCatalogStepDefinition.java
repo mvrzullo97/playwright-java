@@ -1,7 +1,5 @@
 package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.Tracing;
 import com.mvrz.practice.toolshop.catalog.pageobjects.NavBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
@@ -14,10 +12,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.TestInfo;
-
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -87,5 +81,21 @@ public class ProductCatalogStepDefinition {
     public void theFirstProductDisplayedShouldBeFirstProduct(String firstProductName) {
         List<String> matchingResults = productList.getProductNames();
         Assertions.assertThat(matchingResults).startsWith(firstProductName);
+    }
+
+    @And("he clears the research")
+    public void heClearsTheResearch() {
+        searchComponent.clearSearch();
+    }
+
+    @Then("the number of product displayed should be {int}")
+    public void theNumberOfProductDisplayedShouldBe(int expectedNumberOfElements) {
+        List<String> matchingResults = productList.getProductNames();
+        org.junit.jupiter.api.Assertions.assertEquals(expectedNumberOfElements, matchingResults.size());
+    }
+
+    @When("he switches to page {string}")
+    public void heSwitchesToPage(String pageNumber) {
+        searchComponent.switchPageOfCatalog(pageNumber);
     }
 }

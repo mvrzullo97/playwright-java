@@ -4,6 +4,8 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
 
+import java.util.Objects;
+
 public class ProductDetails {
     private final Page page;
 
@@ -17,6 +19,13 @@ public class ProductDetails {
         for (i = 1; i < quantity; i++) {increaseQuantityBtn.click();}
     }
 
+    public int getProductQuantityInTheCart() {
+        return Integer.
+                parseInt(Objects.requireNonNull(
+                        page.getByTestId("cart-quantity").textContent())
+                );
+    }
+
     public void addProductInCart() {
         var addToCartBtn = page.getByTestId("add-to-cart");
         var toastMessage = page.getByRole(AriaRole.ALERT,
@@ -24,6 +33,19 @@ public class ProductDetails {
         addToCartBtn.click();
         PlaywrightAssertions.assertThat(toastMessage).isVisible();
 
+    }
+
+    public String getProductName() {
+        return Objects.requireNonNull(page.getByTestId("product-name")
+                .textContent()).strip();
+    }
+
+    public void checkOutOfStockProduct() {
+        PlaywrightAssertions.assertThat(page.getByTestId("add-to-cart")).isDisabled();
+    }
+
+    public String getCo2ActiveRate() {
+        return page.locator(".co2-letter.active").textContent();
     }
 
 }

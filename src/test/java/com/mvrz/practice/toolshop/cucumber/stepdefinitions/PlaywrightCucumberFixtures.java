@@ -50,4 +50,8 @@ public class PlaywrightCucumberFixtures {
     public static Page getPage() {
         return page.get();
     }
+
+    public static BrowserContext getBrowserContext() {
+        return browserContext.get();
+    }
 }

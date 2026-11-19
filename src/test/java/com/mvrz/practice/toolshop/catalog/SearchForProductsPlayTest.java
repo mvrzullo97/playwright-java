@@ -58,7 +58,8 @@ public class SearchForProductsPlayTest {
     @Test
     public void openTheHomePage() {
         navBar.openHomePage();
-        searchComponent.filterBy("Hand Saw");
+        //searchComponent.filterBy("Hand Saw");
+        searchComponent.switchPageOfCatalog("2");
     }
 
 }

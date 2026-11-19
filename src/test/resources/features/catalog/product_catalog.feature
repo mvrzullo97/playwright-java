@@ -42,3 +42,9 @@ Feature: Product Catalog
         | Price (High - Low) | Drawer Tool Cabinet |
         | Price (Low - High) | Washers             |
 
+  Rule: Customer should be able to clear the research
+    Example: The one where Alessio searches for a wrench and then he clears the research
+      Given Alessio is on the Home Page
+      When he searches for "wrench"
+      And he clears the research
+      Then the number of product displayed should be 9
