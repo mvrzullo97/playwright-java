@@ -5,7 +5,7 @@ import org.junit.platform.suite.api.*;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features")
+@SelectClasspathResource("features/catalog")
 //per il momento non serve
 @ConfigurationParameter(
         key = "cucumber.plugin",
