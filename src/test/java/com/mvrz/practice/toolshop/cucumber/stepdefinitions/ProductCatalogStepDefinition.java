@@ -1,12 +1,11 @@
 package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
-import com.mvrz.practice.toolshop.catalog.pageobjects.NavBar;
+import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
 import com.mvrz.practice.toolshop.domain.ProductSummary;
 import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,20 +16,20 @@ import java.util.Map;
 
 public class ProductCatalogStepDefinition {
 
-    NavBar navBar;
+    NavigationBar navigationBar;
     SearchComponent searchComponent;
     ProductList productList;
 
     @Before
     public void setupPageObjects() {
-        navBar = new NavBar(PlaywrightCucumberFixtures.getPage());
+        navigationBar = new NavigationBar(PlaywrightCucumberFixtures.getPage());
         searchComponent = new SearchComponent(PlaywrightCucumberFixtures.getPage());
         productList = new ProductList(PlaywrightCucumberFixtures.getPage());
     }
 
     @Given("Alessio is on the Home Page")
     public void AlessioIsOnTheHomePage() {
-        navBar.openHomePage();
+        navigationBar.openHomePage();
     }
 
     @When("he searches for {string}")

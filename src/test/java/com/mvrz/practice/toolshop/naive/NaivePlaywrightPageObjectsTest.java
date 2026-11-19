@@ -1,7 +1,7 @@
 package com.mvrz.practice.toolshop.naive;
 
 import com.mvrz.practice.toolshop.fixtures.PlaywrightTestCase;
-import com.mvrz.practice.toolshop.catalog.pageobjects.NavBar;
+import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductDetails;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
@@ -12,7 +12,7 @@ public class NaivePlaywrightPageObjectsTest extends PlaywrightTestCase {
     SearchComponent searchComponent;
     ProductList productList;
     ProductDetails productDetails;
-    NavBar navBar;
+    NavigationBar navigationBar;
 
     @BeforeEach
     void openToolShopPage() {page.navigate("https://practicesoftwaretesting.com");}

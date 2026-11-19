@@ -3,7 +3,7 @@ package com.mvrz.practice.toolshop.catalog;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
-import com.mvrz.practice.toolshop.catalog.pageobjects.NavBar;
+import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
 import org.assertj.core.api.Assertions;
@@ -18,13 +18,13 @@ public class SearchForProductsPlayTest {
 
     SearchComponent searchComponent;
     ProductList productList;
-    NavBar navBar;
+    NavigationBar navigationBar;
 
     @BeforeEach
     void openToolShopPage(Page page) {
         searchComponent = new SearchComponent(page);
         productList = new ProductList(page);
-        navBar = new NavBar(page);
+        navigationBar = new NavigationBar(page);
         page.navigate("https://practicesoftwaretesting.com");
     }
 
@@ -57,7 +57,7 @@ public class SearchForProductsPlayTest {
     @DisplayName("dumb test to verify some stuffs")
     @Test
     public void openTheHomePage() {
-        navBar.openHomePage();
+        navigationBar.openHomePage();
         //searchComponent.filterBy("Hand Saw");
         searchComponent.switchPageOfCatalog("2");
     }

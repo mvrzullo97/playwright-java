@@ -10,7 +10,6 @@ import com.mvrz.practice.toolshop.catalog.pageobjects.*;
 import org.junit.jupiter.api.*;
 
 import java.nio.file.Paths;
-import java.util.Locale;
 
 @UsePlaywright(HeadlessChromeOptions.class)
 public class AddToCartPlayTest {
@@ -18,7 +17,7 @@ public class AddToCartPlayTest {
     SearchComponent searchComponent;
     ProductList productList;
     ProductDetails productDetails;
-    NavBar navBar;
+    NavigationBar navigationBar;
     CheckoutCart checkoutCart;
 
     @BeforeEach
@@ -28,7 +27,7 @@ public class AddToCartPlayTest {
         searchComponent = new SearchComponent(page);
         productList = new ProductList(page);
         productDetails = new ProductDetails(page);
-        navBar = new NavBar(page);
+        navigationBar = new NavigationBar(page);
         checkoutCart = new CheckoutCart(page);
 
         page.navigate("https://practicesoftwaretesting.com");
@@ -65,7 +64,7 @@ public class AddToCartPlayTest {
         var actQuantity = page.getByTestId("cart-quantity").textContent();
         Assertions.assertEquals(3, Integer.parseInt(actQuantity));
 
-        navBar.openCart();
+        navigationBar.openCart();
         String actItemInCart = checkoutCart.checkOutItem();
         org.assertj.core.api.Assertions.assertThat(actItemInCart).isEqualTo("Claw Hammer");
     }
