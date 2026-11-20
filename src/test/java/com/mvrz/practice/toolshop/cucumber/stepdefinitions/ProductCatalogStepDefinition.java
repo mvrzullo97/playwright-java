@@ -27,11 +27,6 @@ public class ProductCatalogStepDefinition {
         productList = new ProductList(PlaywrightCucumberFixtures.getPage());
     }
 
-    @Given("Alessio is on the Home Page")
-    public void AlessioIsOnTheHomePage() {
-        navigationBar.openHomePage();
-    }
-
     @When("he searches for {string}")
     public void heSearchesFor(String searchTerm) {
         searchComponent.searchBy(searchTerm);

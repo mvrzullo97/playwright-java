@@ -1,13 +1,8 @@
 package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
-import com.microsoft.playwright.assertions.PlaywrightAssertions;
-import com.mvrz.practice.toolshop.catalog.pageobjects.ProductDetails;
-import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
-import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
+import com.mvrz.practice.toolshop.catalog.pageobjects.*;
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.jupiter.api.Assertions;
 
@@ -15,12 +10,16 @@ public class ProductDetailsStepDefinition {
     SearchComponent searchComponent;
     ProductList productList;
     ProductDetails productDetails;
+    FavouriteList favouriteList;
+    NavigationBar navigationBar;
 
     @Before
     public void setupPageObjects() {
         searchComponent = new SearchComponent(PlaywrightCucumberFixtures.getPage());
         productList = new ProductList(PlaywrightCucumberFixtures.getPage());
         productDetails = new ProductDetails(PlaywrightCucumberFixtures.getPage());
+        favouriteList = new FavouriteList(PlaywrightCucumberFixtures.getPage());
+        navigationBar = new NavigationBar(PlaywrightCucumberFixtures.getPage());
     }
 
     @And("he selects {string}")
@@ -60,5 +59,16 @@ public class ProductDetailsStepDefinition {
         Assertions.assertEquals(
                 productDetails.getProductQuantityInTheCart(),
                 expectedQuantity);
+    }
+
+    @And("add the product to the Favourite List")
+    public void addProductToTheFavouriteList() {
+        productDetails.addProductToFavouriteList();
+    }
+
+    @Then("the {string} product should be displayed in the List")
+    public void theProductShouldBeDisplayedInTheList(String productName) {
+        navigationBar.goToFavouriteList();
+        favouriteList.checkProductInList(productName);
     }
 }

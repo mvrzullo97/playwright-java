@@ -3,6 +3,7 @@ package com.mvrz.practice.toolshop.catalog;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
+import com.mvrz.practice.toolshop.catalog.pageobjects.LogInForm;
 import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
@@ -19,12 +20,14 @@ public class SearchForProductsPlayTest {
     SearchComponent searchComponent;
     ProductList productList;
     NavigationBar navigationBar;
+    LogInForm logInForm;
 
     @BeforeEach
     void openToolShopPage(Page page) {
         searchComponent = new SearchComponent(page);
         productList = new ProductList(page);
         navigationBar = new NavigationBar(page);
+        logInForm = new LogInForm(page);
         page.navigate("https://practicesoftwaretesting.com");
     }
 
@@ -58,8 +61,11 @@ public class SearchForProductsPlayTest {
     @Test
     public void openTheHomePage() {
         navigationBar.openHomePage();
-        //searchComponent.filterBy("Hand Saw");
-        searchComponent.switchPageOfCatalog("2");
+        navigationBar.goToLogInPage();
+        logInForm.insertCredentials("ale.marz19@gmail.com", "Marz@777");
+        logInForm.submitLoginForm();
+        logInForm.checkLoginSuccessfully();
+        navigationBar.goToFavouriteList();
     }
 
 }

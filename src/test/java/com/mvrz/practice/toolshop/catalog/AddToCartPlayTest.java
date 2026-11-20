@@ -64,7 +64,7 @@ public class AddToCartPlayTest {
         var actQuantity = page.getByTestId("cart-quantity").textContent();
         Assertions.assertEquals(3, Integer.parseInt(actQuantity));
 
-        navigationBar.openCart();
+        navigationBar.goToCart();
         String actItemInCart = checkoutCart.checkOutItem();
         org.assertj.core.api.Assertions.assertThat(actItemInCart).isEqualTo("Claw Hammer");
     }

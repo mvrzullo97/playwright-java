@@ -35,6 +35,14 @@ public class ProductDetails {
 
     }
 
+    public void addProductToFavouriteList() {
+        page.getByTestId("add-to-favorites").click();
+        PlaywrightAssertions.assertThat(page.getByRole(AriaRole.ALERT,
+                new Page.GetByRoleOptions()
+                        .setName(" Product added to your favorites list.")))
+                .isVisible();
+    }
+
     public String getProductName() {
         return Objects.requireNonNull(page.getByTestId("product-name")
                 .textContent()).strip();

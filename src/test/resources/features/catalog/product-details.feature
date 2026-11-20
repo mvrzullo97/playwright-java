@@ -2,10 +2,9 @@ Feature:
   As a Customer,
   I want see the product details, check its quantity
   and verify the possibility to add it in a cart
-  Alessio is an on-line customer
 
   Background:
-    Given Alessio is on the Home Page
+    Given A Customer is on the Home Page
 
   Scenario: The one where Alessio searches for Pliers and clicks on a product to see its details
     When he searches for "pliers"
@@ -29,3 +28,12 @@ Feature:
     And he increases the product quantity of 3
     And adds product to the cart
     Then the cart icon should be displayed with quantity of 3
+
+  Scenario: The one where a Customer logs in, selects a product from the catalog and
+            adds it to his Favorites list
+    And a new random customer registers your account and logs in
+    And he goes to Home Page
+    When he searches for "pliers"
+    And he selects "Combination Pliers"
+    And add the product to the Favourite List
+    Then the "Combination Pliers" product should be displayed in the List

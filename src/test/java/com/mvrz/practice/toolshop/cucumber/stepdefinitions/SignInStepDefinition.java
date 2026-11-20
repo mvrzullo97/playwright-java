@@ -1,16 +1,13 @@
 package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
-import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.mvrz.practice.toolshop.catalog.pageobjects.*;
 import com.mvrz.practice.toolshop.customer.CustomerForm;
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -34,26 +31,44 @@ public class SignInStepDefinition {
         customerForm = new CustomerForm(PlaywrightCucumberFixtures.getPage());
     }
 
-    public String generateRandomString() {
+    public String generateRandomString(int size) {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        return new Random().ints(10, 0, chars.length())
+        return new Random().ints(size, 0, chars.length())
                 .mapToObj(chars::charAt)
                 .map(String::valueOf)
                 .collect(Collectors.joining());
     }
 
+    @Given("a new random customer registers your account and logs in")
+    public void registerNewCustomer() {
+        navigationBar.goToLogInPage();
+        navigationBar.goToRegistrationPage();
+        String email = generateRandomString(10) +"@gmail.com";
+        String password = generateRandomString(5) + "@12345";
 
-    @Given("On-Line Customer is on the Login Page")
-    public void customerIsOnTheLoginPage() {
-        navigationBar.openSignInPage();
+        customerForm.compileCustomerForm(
+                "Random",
+                "Customer",
+                "2000-10-10",
+                "Italy",
+                "86170",
+                "100",
+                "111111111",
+                    email,
+                    password
+                );
+        customerForm.checkAutoFill();
+        customerForm.submitRegistrationForm();
+        customerForm.checkSuccessfulRegistration();
+        logInWith(email, password);
     }
 
-
-    @When("he logs with {string} and {string}")
+    @When("he logs in with {string} and {string}")
     public void logInWith(String email, String password) {
         logInForm.insertCredentials(email, password);
         logInForm.submitLoginForm();
+        logInForm.checkLoginSuccessfully();
     }
 
     @Then("an error message {string} should be displayed")
@@ -76,7 +91,7 @@ public class SignInStepDefinition {
 
     @And("he goes to the Registration Page")
     public void goToRegistrationPage() {
-        navigationBar.openRegistrationPage();
+        navigationBar.goToRegistrationPage();
     }
 
     @When("he compiles correctly the Registration Form")
@@ -89,7 +104,7 @@ public class SignInStepDefinition {
                 "86170",
                 "205",
                 "1110000678",
-                "ale.marz@gmail.com",
+                "ale.marz19@gmail.com",
                 "Marz@777");
         customerForm.checkAutoFill();
     }

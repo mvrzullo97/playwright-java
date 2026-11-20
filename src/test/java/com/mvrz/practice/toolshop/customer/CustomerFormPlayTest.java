@@ -24,7 +24,7 @@ public class CustomerFormPlayTest {
     @DisplayName("register new account")
     @Test
     public void registerNewAccount() {
-        navigationBar.openRegistrationPage();
+        navigationBar.goToRegistrationPage();
         customerForm.compileCustomerForm(
                 "Mario",
                 "Rossi",

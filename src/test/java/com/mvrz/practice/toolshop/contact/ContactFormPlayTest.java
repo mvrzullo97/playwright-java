@@ -28,7 +28,7 @@ public class ContactFormPlayTest {
     @DisplayName("when compiling a contact form correctly")
     void whenCompilingContactForm(Page page) {
 
-        navigationBar.openContactPage();
+        navigationBar.goToContactPage();
         contactForm.setFirstName("Alessio");
         contactForm.setLastName("Marzullo");
         contactForm.setEmail("alessio@gmail.com");
@@ -44,7 +44,7 @@ public class ContactFormPlayTest {
     @ValueSource(strings = {"First name", "Last name", "Email", "Message"})
     void checkMandatoryFields(String deletedField, Page page) {
 
-        navigationBar.openContactPage();
+        navigationBar.goToContactPage();
 
         contactForm.setFirstName("Alessio");
         contactForm.setLastName("Marzullo");

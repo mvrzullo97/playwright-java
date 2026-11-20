@@ -4,14 +4,15 @@ Feature: Product Catalog
   So that I can find I need quickly.
   Alessio is an on-line Customer
 
+  Background:
+    Given A Customer is on the Home Page
+
   Rule: Customers should be able to search for products By Name
     Example: The one where Alessio searches for a Pliers
-      Given Alessio is on the Home Page
       When he searches for "Pliers"
       Then the "Pliers" product should be displayed
 
     Example: The one where Alessio searches for a general product
-      Given Alessio is on the Home Page
       When he searches for "saw"
       Then the following products should be displayed:
         | Product      | Price  |
@@ -19,20 +20,17 @@ Feature: Product Catalog
         | Circular Saw | $80.19 |
 
     Example: The one where Alessio searches for a product that doesn't exist
-      Given Alessio is on the Home Page
       When he searches for "Product-does-not-exist"
       Then no product should be displayed
       And the message "There are no products found." should be displayed
 
   Rule: Customer should be able to narrow downs their search by category
     Example: The one where Alessio only wants to see Hand Saw
-      Given Alessio is on the Home Page
       When he filters by "Hand Saw"
       Then the "Wood Saw" product should be displayed
 
   Rule: Customer should be able to sort products by various criteria
     Scenario Outline: Alessio sorts by different criteria
-      Given Alessio is on the Home Page
       When he sorts by "<Sort>"
       Then the first product displayed should be "<First Product>"
       Examples:
@@ -44,7 +42,6 @@ Feature: Product Catalog
 
   Rule: Customer should be able to clear the research
     Example: The one where Alessio searches for a wrench and then he clears the research
-      Given Alessio is on the Home Page
       When he searches for "wrench"
       And he clears the research
       Then the number of product displayed should be 9
