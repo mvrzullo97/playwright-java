@@ -5,7 +5,9 @@ import com.mvrz.practice.toolshop.catalog.pageobjects.ProductDetails;
 import com.mvrz.practice.toolshop.catalog.pageobjects.ProductList;
 import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.jupiter.api.Assertions;
 

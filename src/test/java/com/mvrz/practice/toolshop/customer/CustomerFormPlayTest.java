@@ -4,7 +4,6 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
 import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
-import com.mvrz.practice.toolshop.contact.ContactForm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,19 @@ public class CustomerFormPlayTest {
     @Test
     public void registerNewAccount() {
         navigationBar.openRegistrationPage();
-        customerForm.compileCustomerForm();
+        customerForm.compileCustomerForm(
+                "Mario",
+                "Rossi",
+                "1990-12-24",
+                "Italy",
+                "50139",
+                "10D",
+                "3332258701",
+                "playwright.udemy.rossdv@gmail.com",
+                "Mario@Rossi90"
+        );
         customerForm.checkAutoFill();
-        customerForm.submitCustomerForm();
+        customerForm.submitRegistrationForm();
+        customerForm.checkSuccessfulRegistration();
     }
 }

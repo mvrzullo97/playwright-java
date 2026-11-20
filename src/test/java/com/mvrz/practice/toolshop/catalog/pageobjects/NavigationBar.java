@@ -14,13 +14,16 @@ public class NavigationBar {
         page.getByTestId("nav-contact").click();
     }
 
-    public void openSignInPage() {page.getByTestId("nav-sign-in").click();}
+    public void openSignInPage() {page.navigate("https://practicesoftwaretesting.com/auth/login");}
 
     public void openRegistrationPage() {page.navigate("https://practicesoftwaretesting.com/auth/register");}
 
     public void openHomePage() {
         page.navigate("https://practicesoftwaretesting.com");
     }
+
+    public String getActualPage() {return page.url();}
+
 }
 
 
