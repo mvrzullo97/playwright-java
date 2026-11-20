@@ -61,11 +61,23 @@ public class SignInStepDefinition {
         customerForm.checkAutoFill();
         customerForm.submitRegistrationForm();
         customerForm.checkSuccessfulRegistration();
-        logInWith(email, password);
+        logInSuccessfullyWith(email, password);
     }
 
-    @When("he logs in with {string} and {string}")
-    public void logInWith(String email, String password) {
+    @When("he inserts invalid credentials")
+    public void logInWithInvalidCredentials() {
+        String email = generateRandomString(10) +"@gmail.com";
+        String password = generateRandomString(5) + "@12345";
+        logInForm.insertCredentials(email, password);
+    }
+
+    @And("tries to submit the form")
+    public void tryToSubmitTheForm() {
+        logInForm.submitLoginForm();
+    }
+
+    @When("he logs in successfully with {string} and {string}")
+    public void logInSuccessfullyWith(String email, String password) {
         logInForm.insertCredentials(email, password);
         logInForm.submitLoginForm();
         logInForm.checkLoginSuccessfully();
@@ -104,7 +116,7 @@ public class SignInStepDefinition {
                 "86170",
                 "205",
                 "1110000678",
-                "ale.marz19@gmail.com",
+                "ale.marz20@gmail.com",
                 "Marz@777");
         customerForm.checkAutoFill();
     }

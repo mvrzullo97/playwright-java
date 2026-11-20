@@ -9,24 +9,26 @@ Feature:
     Given A Customer is on the Home Page
     And he goes to Login Page
 
-  Scenario: the one where Alessio tries to log in with invalid credentials
-    When he logs in with "randomcredentials@gmail.com" and "random@password90"
+  Scenario: try to log in with invalid credentials
+    When he inserts invalid credentials
+    And tries to submit the form
     Then an error message "Invalid email or password" should be displayed
 
-  Scenario Outline: the one where Alessio does not fill a mandatory field and tries to log in
-    When he logs in with "randomcredentials@gmail.com" and "random@password90"
+  Scenario Outline: try to log in without compiling all mandatory filed
+    When he inserts invalid credentials
     And he deletes the field "<Field>"
+    And tries to submit the form
     Then an error message "<Error message>" should be displayed
     Examples:
       | Field           | Error message        |
       | Your email      | Email is required    |
       | Your password   | Password is required |
 
-  Scenario: the one where Alessio has valid credentials and logs in successfully
-    When he logs in with "ale.marz19@gmail.com" and "Marz@777"
+  Scenario: log in successfully
+    When he logs in successfully with "ale.marz19@gmail.com" and "Marz@777"
     Then the account page should be displayed
 
-  Scenario: the one where new customer wants register your account
+  Scenario: register a new account from zero
     And he goes to the Registration Page
     When he compiles correctly the Registration Form
     And submits the Registration Form
