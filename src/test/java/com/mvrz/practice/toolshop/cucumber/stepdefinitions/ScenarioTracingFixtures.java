@@ -5,6 +5,10 @@ import com.microsoft.playwright.Tracing;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ScenarioTracingFixtures {
@@ -19,14 +23,24 @@ public class ScenarioTracingFixtures {
         );
     }
 
+
+
     @After
-    public void recordTraces(Scenario scenario) {
+    public void recordTraces(Scenario scenario) throws IOException {
         String traceName = scenario.getName().replace(" ", "-").toLowerCase();
         BrowserContext context = PlaywrightCucumberFixtures.getBrowserContext();
 
+        String featureName = Paths.get(scenario.getUri())
+                .getFileName().toString().replace(".feature", "");
+
+        Path traceDirectory = Paths.get(
+                "target/traces/cucumber-traces/" + featureName
+        );
+        Files.createDirectories(traceDirectory);
+
         context.tracing().stop(
                 new Tracing.StopOptions()
-                        .setPath(Paths.get("target/traces/cucumber-traces/trace-" + traceName + ".zip"))
+                        .setPath(traceDirectory.resolve("trace-" + traceName + ".zip"))
         );
     }
 }
