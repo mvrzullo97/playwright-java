@@ -27,11 +27,9 @@ public class ProductDetails {
     }
 
     public void addProductInCart() {
-        var addToCartBtn = page.getByTestId("add-to-cart");
-        var toastMessage = page.getByRole(AriaRole.ALERT,
-                new Page.GetByRoleOptions().setName(" Product added to shopping cart. "));
-        addToCartBtn.click();
-        PlaywrightAssertions.assertThat(toastMessage).isVisible();
+        page.getByTestId("add-to-cart").click();
+        PlaywrightAssertions.assertThat(page.getByRole(AriaRole.ALERT,
+                new Page.GetByRoleOptions().setName(" Product added to shopping cart. "))).isVisible();
 
     }
 
@@ -56,4 +54,7 @@ public class ProductDetails {
         return page.locator(".co2-letter.active").textContent();
     }
 
+    public boolean isCartIconVisible() {
+        return page.getByTestId("cart-quantity").isVisible();
+    }
 }

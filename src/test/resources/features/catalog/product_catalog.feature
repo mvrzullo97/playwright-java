@@ -5,7 +5,7 @@ Feature: Product Catalog
   Alessio is an on-line Customer
 
   Background:
-    Given A Customer is on the Home Page
+    Given a Customer is on the Home Page
 
   Rule: Customers should be able to search for products By Name
     Example: The one where Alessio searches for a Pliers

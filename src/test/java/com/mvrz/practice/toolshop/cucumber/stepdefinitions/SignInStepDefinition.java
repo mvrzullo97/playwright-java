@@ -3,6 +3,7 @@ package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 import com.mvrz.practice.toolshop.catalog.pageobjects.*;
 import com.mvrz.practice.toolshop.customer.CustomerForm;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -42,6 +43,7 @@ public class SignInStepDefinition {
 
     @Given("a new random customer registers your account and logs in")
     public void registerNewCustomer() {
+        navigationBar.openHomePage();
         navigationBar.goToLogInPage();
         navigationBar.goToRegistrationPage();
         String email = generateRandomString(10) +"@gmail.com";
@@ -116,7 +118,7 @@ public class SignInStepDefinition {
                 "86170",
                 "205",
                 "1110000678",
-                "ale.marz20@gmail.com",
+                "ale.marz21@gmail.com",
                 "Marz@777");
         customerForm.checkAutoFill();
     }

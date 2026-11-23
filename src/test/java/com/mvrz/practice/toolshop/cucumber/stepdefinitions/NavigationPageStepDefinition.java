@@ -14,7 +14,7 @@ public class NavigationPageStepDefinition {
         navigationBar = new NavigationBar(PlaywrightCucumberFixtures.getPage());
     }
 
-    @Given("A Customer is on the Home Page")
+    @Given("a Customer is on the Home Page")
     public void aCustomerIsOnTheHomePage() {
         navigationBar.openHomePage();
     }

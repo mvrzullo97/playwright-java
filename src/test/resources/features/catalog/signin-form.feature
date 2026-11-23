@@ -6,7 +6,7 @@ Feature:
 
   Rule: in order to verify the functionalities of registration account
   Background:
-    Given A Customer is on the Home Page
+    Given a Customer is on the Home Page
     And he goes to Login Page
 
   Scenario: try to log in with invalid credentials

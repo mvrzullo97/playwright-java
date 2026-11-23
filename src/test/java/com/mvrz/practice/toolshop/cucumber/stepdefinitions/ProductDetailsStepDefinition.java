@@ -71,4 +71,9 @@ public class ProductDetailsStepDefinition {
         navigationBar.goToFavouriteList();
         favouriteList.checkProductInList(productName);
     }
+
+    @And("the cart icon should not be visible")
+    public void cartIconShouldNotBeVisible() {
+        Assertions.assertFalse(productDetails.isCartIconVisible());
+    }
 }

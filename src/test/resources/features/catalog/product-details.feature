@@ -4,7 +4,7 @@ Feature:
   and verify the possibility to add it in a cart
 
   Background:
-    Given A Customer is on the Home Page
+    Given a Customer is on the Home Page
 
   Scenario: search for Pliers and click on a product to see its details
     When he searches for "pliers"
