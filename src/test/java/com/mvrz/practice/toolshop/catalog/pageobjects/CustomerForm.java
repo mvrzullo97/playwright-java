@@ -6,6 +6,11 @@ import com.microsoft.playwright.Response;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import org.junit.jupiter.api.Assertions;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
 public class CustomerForm {
     private final Page page;
 
@@ -47,6 +52,7 @@ public class CustomerForm {
         this.phoneNumber.fill(phoneNumber);
         this.email.fill(email);
         this.password.fill(password);
+        writeCredentials(email, password);
     }
 
     public void submitRegistrationForm() {
@@ -68,5 +74,17 @@ public class CustomerForm {
     public void checkSuccessfulRegistration() {
         PlaywrightAssertions.assertThat(page)
                 .hasURL("https://practicesoftwaretesting.com/auth/login");
+    }
+
+    public static void writeCredentials(String mail, String pwd) {
+        final Path FILE_PATH = Path.of(
+                "src/test/resources/data/valid-credentials/credentials.txt");
+        try {
+            Files.createDirectories(FILE_PATH.getParent());
+            String content = String.format("EMAIL: %s%nPWD: %s%n%n", mail, pwd);
+            Files.writeString(FILE_PATH, content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -34,3 +34,7 @@ Feature: Sign-in
     When he compiles correctly the Registration Form
     And submits the Registration Form
     Then the Login Page should be displayed
+
+    Scenario: data preparation to use valid credentials
+      Given a new random customer registers your account and logs in
+      Then a Customer is on the Home Page

@@ -68,8 +68,8 @@ public class SignInStepDefinition {
 
     @When("he inserts invalid credentials")
     public void logInWithInvalidCredentials() {
-        String email = generateRandomString(10) +"@gmail.com";
-        String password = generateRandomString(5) + "@12345";
+        String email = generateRandomString(5) +"A@gmail.com";
+        String password = generateRandomString(5) + "A@12345";
         logInForm.insertCredentials(email, password);
     }
 
@@ -121,10 +121,14 @@ public class SignInStepDefinition {
                 generateRandomString(5) + "ale.marz@gmail.com",
                 "Marz@777");
         customerForm.checkAutoFill();
+
     }
 
     @And("submits the Registration Form")
-    public void submitTheRegistrationForm() {customerForm.submitRegistrationForm();}
+    public void submitTheRegistrationForm() {
+        customerForm.submitRegistrationForm();
+
+    }
 
     @Then("the Login Page should be displayed")
     public void theLoginPageShouldBeDisplayed() {
