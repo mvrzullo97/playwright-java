@@ -1,4 +1,4 @@
-Feature:
+Feature: Product Details
   As a Customer,
   I want see the product details, check its quantity
   and verify the possibility to add it in a cart

@@ -1,4 +1,4 @@
-Feature:
+Feature: Checkout Cart
   A new Customer proceeds to checkout his cart;
   - Sign-in phase
   - Billing Address phase

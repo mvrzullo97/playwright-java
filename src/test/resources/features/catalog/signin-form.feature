@@ -1,4 +1,4 @@
-Feature:
+Feature: Sign-in
   As an on-line Customer,
   I want register my account and check if the operation is successfully,
   After the registration, I want check if the user can log in with his credentials
@@ -24,9 +24,10 @@ Feature:
       | Your email      | Email is required    |
       | Your password   | Password is required |
 
-  Scenario: log in successfully
-    When he logs in successfully with "ale.marz19@gmail.com" and "Marz@777"
-    Then the account page should be displayed
+  # untestable perché il sito non permette lo storage delle utenze
+  #Scenario: log in successfully
+  #  When he logs in successfully with "ale.marz19@gmail.com" and "Marz@777"
+  #  Then the account page should be displayed
 
   Scenario: register a new account from zero
     And he goes to the Registration Page

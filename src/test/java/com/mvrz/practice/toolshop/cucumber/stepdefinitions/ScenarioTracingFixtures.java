@@ -23,8 +23,26 @@ public class ScenarioTracingFixtures {
         );
     }
 
+    @After
+    public void recordTraces(Scenario scenario) throws IOException {
+        String traceName = scenario.getName()
+                .replace(" ", "-")
+                .toLowerCase();
+        BrowserContext context = PlaywrightCucumberFixtures.getBrowserContext();
+        String featureName = scenario.getUri().toString()
+                .substring(scenario.getUri().toString().lastIndexOf('/') + 1)
+                .replace(".feature", "");
+        Path traceDirectory = Paths.get("target/traces/cucumber-traces/" + featureName);
+        Files.createDirectories(traceDirectory);
+        context.tracing().stop(
+                new Tracing.StopOptions()
+                        .setPath(traceDirectory.resolve("trace-" + traceName + ".zip"))
+        );
+    }
 
 
+
+/*
     @After
     public void recordTraces(Scenario scenario) throws IOException {
         String traceName = scenario.getName().replace(" ", "-").toLowerCase();
@@ -43,5 +61,7 @@ public class ScenarioTracingFixtures {
                         .setPath(traceDirectory.resolve("trace-" + traceName + ".zip"))
         );
     }
+
+ */
 }
 

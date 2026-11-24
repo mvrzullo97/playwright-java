@@ -46,8 +46,8 @@ public class SignInStepDefinition {
         navigationBar.openHomePage();
         navigationBar.goToLogInPage();
         navigationBar.goToRegistrationPage();
-        String email = generateRandomString(10) +"@gmail.com";
-        String password = generateRandomString(5) + "@12345";
+        String email = generateRandomString(5) +"ABC@gmail.com";
+        String password = generateRandomString(5) + "ABC@12345";
 
         customerForm.compileCustomerForm(
                 "Random",
@@ -118,7 +118,7 @@ public class SignInStepDefinition {
                 "86170",
                 "205",
                 "1110000678",
-                "ale.marz21@gmail.com",
+                generateRandomString(5) + "ale.marz@gmail.com",
                 "Marz@777");
         customerForm.checkAutoFill();
     }
