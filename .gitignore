@@ -37,3 +37,10 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# IntelliJ IDEA
+.idea/
+# Allure local files
+.allure/
+# Java archive files
+*.jar
