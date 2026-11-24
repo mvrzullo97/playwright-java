@@ -1,4 +1,4 @@
-package com.mvrz.practice.toolshop.contact;
+package com.mvrz.practice.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -53,6 +53,10 @@ public class ContactForm {
 
     public void checkMandatoryFieldMessage(String deletedField) {
         page.getByRole(AriaRole.ALERT).getByText(deletedField + " is required");
+    }
+
+    public String getMandatoryFieldMessage() {
+        return page.getByRole(AriaRole.ALERT).textContent();
     }
 
 }

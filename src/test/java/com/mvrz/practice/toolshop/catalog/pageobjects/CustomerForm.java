@@ -1,4 +1,4 @@
-package com.mvrz.practice.toolshop.customer;
+package com.mvrz.practice.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
