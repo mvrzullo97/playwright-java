@@ -3,6 +3,7 @@ package com.mvrz.practice.toolshop.customer;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.mvrz.practice.exercises.utils.HeadlessChromeOptions;
+import com.mvrz.practice.toolshop.catalog.pageobjects.CustomerForm;
 import com.mvrz.practice.toolshop.catalog.pageobjects.NavigationBar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

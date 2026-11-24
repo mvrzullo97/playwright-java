@@ -1,7 +1,7 @@
 package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
 import com.mvrz.practice.toolshop.catalog.pageobjects.*;
-import com.mvrz.practice.toolshop.customer.CustomerForm;
+import com.mvrz.practice.toolshop.catalog.pageobjects.CustomerForm;
 import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;

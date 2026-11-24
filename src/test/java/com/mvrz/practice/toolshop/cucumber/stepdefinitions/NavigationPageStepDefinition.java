@@ -28,4 +28,9 @@ public class NavigationPageStepDefinition {
     public void heGoesToHomePage() {
         navigationBar.goToHomePage();
     }
+
+    @And("he goes to Contact Page")
+    public void heGoesToContactPage() {
+        navigationBar.goToContactPage();
+    }
 }
