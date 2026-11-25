@@ -6,6 +6,7 @@ import com.mvrz.practice.toolshop.catalog.pageobjects.SearchComponent;
 import com.mvrz.practice.toolshop.domain.ProductSummary;
 import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -91,5 +92,15 @@ public class ProductCatalogStepDefinition {
     @When("he switches to page {string}")
     public void heSwitchesToPage(String pageNumber) {
         searchComponent.switchPageOfCatalog(pageNumber);
+    }
+
+    @When("he selects the price range from {int} to {int}")
+    public void heSelectsThePriceRangeFromTo(int lowerBound, int upperBound) {
+        searchComponent.selectPriceRange(lowerBound, upperBound);
+    }
+
+    @Then("only the products that respect the range should be displayed")
+    public void onlyTheProductsThatRespectTheRangeShouldBeDisplayed(List<String> products) {
+        Assertions.assertThat(productList.getProductNames()).isEqualTo((products));
     }
 }

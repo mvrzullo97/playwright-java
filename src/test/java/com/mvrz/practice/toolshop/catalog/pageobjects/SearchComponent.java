@@ -1,7 +1,9 @@
 package com.mvrz.practice.toolshop.catalog.pageobjects;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import org.assertj.core.api.Assertions;
 
 import java.util.Objects;
 
@@ -61,5 +63,26 @@ public class SearchComponent {
                 () -> {
                     page.getByTestId("sort").selectOption(sortFilter);
                 });
+    }
+
+    public void selectPriceRange(int lowerBound, int upperBound) {
+
+        int actualLowerBound = 1;
+        int actualUpperBound = 100;
+        String direction="";
+        int offsetUpper = upperBound-actualUpperBound;
+        int offsetLower = lowerBound-actualLowerBound;
+
+        direction = offsetUpper > 0 ? "ArrowRight" : "ArrowLeft";
+        for (int i=1; i <= offsetUpper; i++) {
+            page.getByRole(AriaRole.SLIDER,
+                    new Page.GetByRoleOptions().setName("ngx-slider-max")
+                            .setExact(true)).press(direction);
+        }
+        for (int i=1; i <= offsetLower; i++) {
+            page.getByRole(AriaRole.SLIDER,
+                    new Page.GetByRoleOptions().setName("ngx-slider")
+                            .setExact(true)).press("ArrowRight");
+        }
     }
 }

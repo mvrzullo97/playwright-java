@@ -3,6 +3,7 @@ package com.mvrz.practice.toolshop.catalog.pageobjects;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.Objects;
 
@@ -56,5 +57,23 @@ public class ProductDetails {
 
     public boolean isCartIconVisible() {
         return page.getByTestId("cart-quantity").isVisible();
+    }
+
+    public void deleteProductFromTheCart() {
+        page.waitForResponse(response -> response.url().contains("/carts")
+                && response.status() == 200
+                && response.request().method().equals("GET"),
+                () -> {
+                    page.locator(".btn-danger").click();
+                });
+        PlaywrightAssertions.assertThat(page.getByRole(AriaRole.ALERT,
+                new Page.GetByRoleOptions().setName("Product deleted."))).isVisible();
+        PlaywrightAssertions.assertThat(page.locator(".ng-star-inserted")
+                .getByText("The cart is empty. Nothing to display."))
+                .isVisible();
+    }
+
+    public boolean productIsPresentInTheCart(String productName) {
+        return page.getByTestId("product-title").getByText(productName).isVisible();
     }
 }

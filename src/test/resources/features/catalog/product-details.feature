@@ -24,7 +24,7 @@ Feature: Product Details
   Scenario: increase the quantity of a product and add them to the cart
     When he selects "Bolt Cutters"
     And he increases the product quantity of 3
-    And adds product to the cart
+    And he adds product to the cart
     Then the cart icon should be displayed with quantity of 3
 
   Scenario: add a product to the favourite list
@@ -34,3 +34,10 @@ Feature: Product Details
     And he selects "Combination Pliers"
     And add the product to the Favourite List
     Then the "Combination Pliers" product should be displayed in the List
+
+  Scenario: remove a product from the cart
+    And he selects "Combination Pliers"
+    And he adds product to the cart
+    And he goes to Cart Page
+    When he deletes the product form the cart
+    Then the product "Combination Pliers" should not be displayed into the cart

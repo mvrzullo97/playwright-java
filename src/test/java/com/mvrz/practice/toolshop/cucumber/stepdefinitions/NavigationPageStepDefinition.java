@@ -33,4 +33,9 @@ public class NavigationPageStepDefinition {
     public void heGoesToContactPage() {
         navigationBar.goToContactPage();
     }
+
+    @And("he goes to Cart Page")
+    public void heGoesToCartPage() {
+        navigationBar.goToCart();
+    }
 }

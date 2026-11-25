@@ -2,8 +2,10 @@ package com.mvrz.practice.toolshop.cucumber.stepdefinitions;
 
 import com.mvrz.practice.toolshop.catalog.pageobjects.*;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 public class ProductDetailsStepDefinition {
@@ -49,7 +51,7 @@ public class ProductDetailsStepDefinition {
         productDetails.selectQuantity(quantity);
     }
 
-    @And("adds product to the cart")
+    @And("he adds product to the cart")
     public void addsProductToTheCart() {
         productDetails.addProductInCart();
     }
@@ -75,5 +77,15 @@ public class ProductDetailsStepDefinition {
     @And("the cart icon should not be visible")
     public void cartIconShouldNotBeVisible() {
         Assertions.assertFalse(productDetails.isCartIconVisible());
+    }
+
+    @When("he deletes the product form the cart")
+    public void heDeletesTheProductFormTheCart() {
+        productDetails.deleteProductFromTheCart();
+    }
+
+    @Then("the product {string} should not be displayed into the cart")
+    public void theProductShouldNotBeDisplayedIntoTheCart(String productName) {
+        Assertions.assertFalse(productDetails.productIsPresentInTheCart(productName));
     }
 }

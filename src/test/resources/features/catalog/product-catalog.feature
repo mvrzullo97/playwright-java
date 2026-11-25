@@ -45,3 +45,14 @@ Feature: Product Catalog
       When he searches for "wrench"
       And he clears the research
       Then the number of product displayed should be 9
+
+  Rule: Customer should be able to select the price range
+    Scenario: select the price range
+      When he selects the price range from 100 to 180
+      Then only the products that respect the range should be displayed
+        |Random Orbit Sander   |
+        |Cordless Drill 18V    |
+        |Cordless Drill 20V    |
+        |Wooden Workbench      |
+        |Workbench with Drawers|
+
